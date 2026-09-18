@@ -1,0 +1,30 @@
+# Problem Statement & Scope
+
+## Problem Statement
+Attendance tracking is a critical administrative task in educational institutions and corporate environments. Traditional manual methods—such as calling out names or passing around paper sign-in sheets—are time-consuming, disrupt lectures or work, and are vulnerable to proxy attendance. 
+
+The **Face Recognition-Based Attendance System** addresses these inefficiencies by leveraging computer vision and deep learning techniques to identify individuals in a live video stream and automatically record their attendance with precise timestamps.
+
+## Project Scope
+
+### In-Scope
+* **Real-Time Attendance Marking:** Captures live video via a standard webcam, detects human faces, matches them against registered user profiles, and logs attendance automatically.
+* **User Enrollment & Encoding:** Processes reference images for users, extracts 128-dimensional facial embeddings, and builds a feature database (`known_faces.pickle`).
+* **Database & Log Management:** Maintains local user profile encodings and dynamically creates daily attendance logs (`YYYY-MM-DD_Attendance.csv`).
+* **Reporting:** Allows administrators to inspect, filter, and export attendance records in standard CSV format.
+
+### Out-of-Scope
+* **Advanced Anti-Spoofing:** Complex anti-spoofing techniques (such as 3D depth mapping or eye-blink detection) are outside the current project scope.
+* **Cloud Infrastructure:** The application runs locally on a single host machine and does not deploy to web/cloud platforms.
+* **Multi-Camera Processing:** Processing is restricted to a single video capture source at any given time.
+
+## Target Users
+* **Administrator (Faculty / Supervisor):** Responsible for system setup, user registration image uploads, attendance monitoring, and log report collection.
+* **End User (Student / Employee):** Individuals whose presence is automatically tracked and logged when appearing in front of the camera feed.
+
+## High-Level Features
+* Automated facial encoding extraction and binary pickle serialization.
+* Real-time spatial frame downscaling (75% reduction) for high FPS performance.
+* 10-minute (600 seconds) user cooldown buffer to prevent duplicate logging within the same session.
+* Dynamic visual overlay (Green bounding box for recognized users, Red for unknown individuals).
+* Daily timestamped CSV attendance reports.
